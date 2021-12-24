@@ -33,10 +33,9 @@ public class Fenetre implements DrawListener {
             //d.circle(p.getxCercle(), p.getyCercle(), p.getRayonRevolution());
             p.deplacerPlanete();
         }
-        d.
         //Temps d'attendre pour permettre un affichage plus visuel
         try {
-            Thread.sleep(10);
+            Thread.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
