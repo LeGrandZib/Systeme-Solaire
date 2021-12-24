@@ -15,15 +15,15 @@ public class planete {
     //Planete
     private double x;
     private double y;
-    private double rayon;
-    private double constAngleRotation;
+    private final double rayon;
+    private final double constAngleRotation;
     private double angleRotation;
-    private Color couleur;
+    private final Color couleur;
 
     //Cercle Orbite
-    private double xCercle;
-    private double yCercle;
-    private double rayonRevolution;
+    private final double xCercle;
+    private final double yCercle;
+    private final double rayonRevolution;
 
     //Construtor
 
@@ -38,6 +38,10 @@ public class planete {
         this.xCercle = 0.5;
         this.yCercle = 0.5;
         this.rayonRevolution = this.x - xCercle;
+    }
+
+    public planete(double x, double y, double rayon, double angleRotation, int r, int g, int b) {
+        this(x, y, rayon, angleRotation, new Color(r, g, b));
     }
 
     public planete() {
@@ -69,13 +73,9 @@ public class planete {
     }
 
     //Getter
-    public double getX() {
-        return x;
-    }
+    public double getX() { return x; }
 
-    public double getY() {
-        return y;
-    }
+    public double getY() { return y; }
 
     public double getRayon() { return rayon; }
 
