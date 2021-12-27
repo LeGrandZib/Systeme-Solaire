@@ -12,8 +12,10 @@ import java.awt.*;
 public class Fenetre implements DrawListener {
 
     //Attributs
-    private double x;
-    private double y;
+    private double mouseX;
+    private double mouseY;
+    private int longueur;
+    private int hauteur;
 
     boolean continu = true;
     Draw d = new Draw("Systeme Solaire");
@@ -26,7 +28,17 @@ public class Fenetre implements DrawListener {
 
     //Constructeur
     public Fenetre() {
-        d.setCanvasSize(800,800);
+        this.hauteur = 800;
+        this.longueur = 800;
+        d.setCanvasSize(longueur,hauteur);
+        d.addListener(this);
+        d.enableDoubleBuffering();
+    }
+
+    public Fenetre(int x, int y) {
+        this.hauteur = y;
+        this.longueur = x;
+        d.setCanvasSize(longueur,hauteur);
         d.addListener(this);
         d.enableDoubleBuffering();
     }
@@ -70,8 +82,8 @@ public class Fenetre implements DrawListener {
     public void mousePressed(double x, double y) {
         System.out.println("x : " + x);
         System.out.println("y : " + y + "\n");
-        this.x = x;
-        this.y = y;
+        this.mouseX = x;
+        this.mouseY = y;
     }
     @Override
     public void mouseDragged(double x, double y) {
@@ -80,11 +92,11 @@ public class Fenetre implements DrawListener {
         System.out.println("y : " + y + "\n");
 
         for ( planete p : planetes ) {
-            p.deplacerPlanete(-(this.x - x), -(this.y - y));
+            p.deplacerPlanete(-(this.mouseX - x), -(this.mouseY - y));
         }
 
-        this.x = x;
-        this.y = y;
+        this.mouseX = x;
+        this.mouseY = y;
 
     }
     @Override
