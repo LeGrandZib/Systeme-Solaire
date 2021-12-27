@@ -15,14 +15,14 @@ public class planete {
     //Planete
     private double x;
     private double y;
-    private final double rayon;
+    private double rayon;
     private final double constAngleRotation;
     private double angleRotation;
     private final Color couleur;
 
     //Cercle Orbite
-    private final double xCercle;
-    private final double yCercle;
+    private double xCercle;
+    private double yCercle;
     private final double rayonRevolution;
 
     //Construtor
@@ -97,6 +97,23 @@ public class planete {
         this.y = yCercle + rayonRevolution * -sin(angleRotation);
 
         this.angleRotation += constAngleRotation;
+    }
+
+    public void deplacerPlanete(double x, double y){
+        this.xCercle += x;
+        this.yCercle += y;
+    }
+
+    public void zoom(){
+        this.rayon *= 1.01;
+        this.xCercle += 0.01;
+        this.yCercle += 0.01;
+    }
+
+    public void dezoom(){
+        this.rayon *= 0.99;
+        this.xCercle -= 0.01;
+        this.yCercle -= 0.01;
     }
 
 
