@@ -47,5 +47,7 @@ public class HorlogeUniverselle{
                             joursParSeconde*(dateReel2.getTime()-dateReel.getTime())/1000)
                     ));
         }
+
+        dateReel=dateReel2;
     }
 }
