@@ -2,7 +2,7 @@ package horloge;
 
 import java.util.Date;
 
-public class HorlogeUniverselle{
+public class HorlogeUniverselle implements Runnable{
     private final int joursParSeconde;
     private Date dateSimu;
     private Date dateReel;
@@ -38,16 +38,19 @@ public class HorlogeUniverselle{
         return dateReel;
     }
 
-    public void majHorloge(){
-        Date dateReel2 = new Date(System.currentTimeMillis());
+    @Override
+    public void run(){
+        while(true) {
+            Date dateReel2 = new Date(System.currentTimeMillis());
 
-        if(dateReel2.after(dateReel)){
-            dateSimu.setDate((int)
-                    (dateSimu.getDate()+(
-                            joursParSeconde*(dateReel2.getTime()-dateReel.getTime())/1000)
-                    ));
+            if (dateReel2.after(dateReel)&& (dateReel2.getTime() - dateReel.getTime()) / 1000 >=1) {
+                dateSimu.setDate((int)
+                        (dateSimu.getDate() + (
+                                joursParSeconde * (dateReel2.getTime() - dateReel.getTime()) / 1000)
+                        ));
+                System.out.println(this);
+                dateReel = dateReel2;
+            }
         }
-
-        dateReel=dateReel2;
     }
 }
