@@ -3,7 +3,7 @@ package horloge;
 import java.util.Date;
 
 public class HorlogeUniverselle{
-    private int joursParSeconde;
+    private final int joursParSeconde;
     private Date dateSimu;
     private Date dateReel;
 
