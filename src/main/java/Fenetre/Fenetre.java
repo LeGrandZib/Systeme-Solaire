@@ -23,10 +23,6 @@ public class Fenetre implements DrawListener {
 
     List<planete> planetes;
 
-    public void setPlanetes(List<planete> planetes) {
-        this.planetes = planetes;
-    }
-
     //Constructeur
 
     public Fenetre(int x, int y) {
@@ -42,6 +38,10 @@ public class Fenetre implements DrawListener {
     }
 
     public boolean isContinu() { return continu; }
+
+    public void setPlanetes(List<planete> planetes) {
+        this.planetes = planetes;
+    }
 
     //Méthode
     public void affiche(List<planete> planetes, HorlogeUniverselle horloge){

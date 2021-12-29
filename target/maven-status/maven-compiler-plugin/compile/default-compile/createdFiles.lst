@@ -6,3 +6,5 @@ Systeme\UseSysteme.class
 eduPrinceton\StdDraw$RetinaImageIcon.class
 Fenetre\Fenetre.class
 Planetes\planete.class
+horloge\HorlogeUniverselle.class
+horloge\testHrologe.class
