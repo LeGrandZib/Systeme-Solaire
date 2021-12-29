@@ -48,7 +48,7 @@ public class HorlogeUniverselle implements Runnable{
                         (dateSimu.getDate() + (
                                 joursParSeconde * (dateReel2.getTime() - dateReel.getTime()) / 1000)
                         ));
-                System.out.println(this);
+                //System.out.println(this);
                 dateReel = dateReel2;
             }
         }

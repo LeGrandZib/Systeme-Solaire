@@ -10,12 +10,12 @@ public class testHrologe {
 
         horloge.start();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
 
-        System.out.println(horloge);
+        System.out.println(h);
     }
 }

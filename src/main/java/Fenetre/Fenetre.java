@@ -4,6 +4,7 @@ import Planetes.planete;
 import eduPrinceton.Draw;
 import eduPrinceton.DrawListener;
 import eduPrinceton.StdDraw;
+import horloge.HorlogeUniverselle;
 
 import java.util.List;
 
@@ -27,13 +28,6 @@ public class Fenetre implements DrawListener {
     }
 
     //Constructeur
-    public Fenetre() {
-        this.hauteur = 800;
-        this.longueur = 800;
-        d.setCanvasSize(longueur,hauteur);
-        d.addListener(this);
-        d.enableDoubleBuffering();
-    }
 
     public Fenetre(int x, int y) {
         this.hauteur = y;
@@ -43,10 +37,14 @@ public class Fenetre implements DrawListener {
         d.enableDoubleBuffering();
     }
 
+    public Fenetre() {
+        this(800,800);
+    }
+
     public boolean isContinu() { return continu; }
 
     //Méthode
-    public void affiche(List<planete> planetes){
+    public void affiche(List<planete> planetes, HorlogeUniverselle horloge){
         d.clear(Color.black);
 
         for ( planete p : planetes ) {
@@ -54,8 +52,7 @@ public class Fenetre implements DrawListener {
             d.filledCircle(p.getX(), p.getY(), p.getRayon());
             //d.circle(p.getxCercle(), p.getyCercle(), p.getRayonRevolution());
             d.show();
-            p.deplacerPlanete();
-
+            p.deplacerPlanete(horloge);
         }
         //Temps d'attendre pour permettre un affichage plus visuel
         d.pause(10);

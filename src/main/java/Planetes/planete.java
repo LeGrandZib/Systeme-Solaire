@@ -1,8 +1,10 @@
 package Planetes;
 
 import eduPrinceton.Draw;
+import horloge.HorlogeUniverselle;
 
 import java.awt.*;
+import java.util.Date;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
@@ -25,6 +27,8 @@ public class planete {
     private double yCercle;
     private final double rayonRevolution;
 
+    private Date ancienneDate;
+
     //Construtor
 
     public planete(double x, double y, double rayon, double angleRotation, Color couleur) {
@@ -38,9 +42,11 @@ public class planete {
         this.xCercle = 0.5;
         this.yCercle = 0.5;
         this.rayonRevolution = this.x - xCercle;
+
+        ancienneDate = new Date(0);
     }
 
-    public planete(double x, double y, double rayon, double angleRotation, int r, int g, int b) {
+    public planete(double x, double y, double rayon, double angleRotation, int r, int g, int b ) {
         this(x, y, rayon, angleRotation, new Color(r, g, b));
     }
 
@@ -88,15 +94,21 @@ public class planete {
     public double getRayonRevolution() { return rayonRevolution; }
 
     //Méthode
-    public void deplacerPlanete(){
-        if(angleRotation >= 360){
-            angleRotation -= 360;
+    public void deplacerPlanete(HorlogeUniverselle horloge){
+
+        if(ancienneDate.before(horloge.getDateSimu())) {
+            if (angleRotation >= 360) {
+                angleRotation -= 360;
+            }
+
+            this.x = xCercle + rayonRevolution * cos(angleRotation);
+            this.y = yCercle + rayonRevolution * -sin(angleRotation);
+
+            this.angleRotation += constAngleRotation * horloge.getJoursParSeconde();
+
+
+            ancienneDate = new Date(horloge.getDateSimu().getTime());
         }
-
-        this.x = xCercle + rayonRevolution * cos(angleRotation);
-        this.y = yCercle + rayonRevolution * -sin(angleRotation);
-
-        this.angleRotation += constAngleRotation;
     }
 
     public void deplacerPlanete(double x, double y){

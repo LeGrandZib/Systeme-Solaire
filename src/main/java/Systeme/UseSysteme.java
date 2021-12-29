@@ -3,6 +3,7 @@ package Systeme;
 import eduPrinceton.Draw;
 import Planetes.planete;
 import Fenetre.Fenetre;
+import horloge.HorlogeUniverselle;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -14,6 +15,9 @@ public class UseSysteme {
         //Création fenetre
 
         Fenetre f = new Fenetre();
+
+        HorlogeUniverselle horloge = new HorlogeUniverselle(1);
+        Thread threadHorloge = new Thread(horloge);
 
         //Constante rotationTerre (toutes les autres planètes se déplacent autour du soleil en fonction de la période de révolution de la Terre)
         final double rotationTerre = 0.02;
@@ -39,10 +43,10 @@ public class UseSysteme {
 
         f.setPlanetes(planetes);
 
+        threadHorloge.start();
+
         while(f.isContinu()){
-            f.affiche(planetes);
+            f.affiche(planetes, horloge);
         }
-
-
     }
 }
