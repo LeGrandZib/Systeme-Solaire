@@ -43,12 +43,19 @@ public class HorlogeUniverselle implements Runnable{
         while(true) {
             Date dateReel2 = new Date(System.currentTimeMillis());
 
-            if (dateReel2.after(dateReel)&& (dateReel2.getTime() - dateReel.getTime()) / 1000 >=1) {
+            /*if (dateReel2.after(dateReel)&& (dateReel2.getTime() - dateReel.getTime()) / 1000 >=1) {
                 dateSimu.setDate((int)
                         (dateSimu.getDate() + (
                                 joursParSeconde * (dateReel2.getTime() - dateReel.getTime()) / 1000)
                         ));
                 //System.out.println(this);
+                dateReel = dateReel2;
+
+             */
+            if (dateReel2.after(dateReel)) {
+                long res = joursParSeconde*86400 * (dateReel2.getTime() - dateReel.getTime()) / 1000;
+                dateSimu.setTime(dateSimu.getTime()+res);
+
                 dateReel = dateReel2;
             }
         }

@@ -16,7 +16,7 @@ public class UseSysteme {
         Fenetre f = new Fenetre();
 
 
-        HorlogeUniverselle horloge = new HorlogeUniverselle(1);
+        HorlogeUniverselle horloge = new HorlogeUniverselle(10);
         Thread threadHorloge = new Thread(horloge);
 
 
@@ -50,5 +50,13 @@ public class UseSysteme {
         while(f.isContinu()){
             f.affiche(planetes, horloge);
         }
+
+        try {
+            Thread.sleep(36,5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("aaa");
     }
 }
