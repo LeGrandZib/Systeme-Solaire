@@ -3,10 +3,15 @@ package horloge;
 import java.util.Date;
 
 public class HorlogeUniverselle implements Runnable{
+
+    //Attributs
     private final int joursParSeconde;
     private Date dateSimu;
     private Date dateReel;
 
+    private boolean continu = true;
+
+    //Constructeurs
     public HorlogeUniverselle(int joursParSeconde) {
         this.joursParSeconde = joursParSeconde;
         dateSimu = new Date(System.currentTimeMillis());
@@ -15,6 +20,13 @@ public class HorlogeUniverselle implements Runnable{
 
     public HorlogeUniverselle(){
         this(15);
+    }
+
+
+    //Méthodes
+
+    public void stop() {
+        continu = false;
     }
 
     @Override
@@ -38,24 +50,19 @@ public class HorlogeUniverselle implements Runnable{
         return dateReel;
     }
 
+    //Mise à jour de la date simulée de l'horloge universelle
     @Override
     public void run(){
-        while(true) {
+        while(continu) {
             Date dateReel2 = new Date(System.currentTimeMillis());
 
-            /*if (dateReel2.after(dateReel)&& (dateReel2.getTime() - dateReel.getTime()) / 1000 >=1) {
-                dateSimu.setDate((int)
-                        (dateSimu.getDate() + (
-                                joursParSeconde * (dateReel2.getTime() - dateReel.getTime()) / 1000)
-                        ));
-                //System.out.println(this);
-                dateReel = dateReel2;
-
-             */
             if (dateReel2.after(dateReel)) {
+                //calcule le nombre de secondes de différence entre la date sauvegardée et l'instant présent et les
+                //convertis en jours selon l'échelle précédemment choisie
                 long res = joursParSeconde*86400 * (dateReel2.getTime() - dateReel.getTime()) / 1000;
                 dateSimu.setTime(dateSimu.getTime()+res);
 
+                //Met à jour la date réelle
                 dateReel = dateReel2;
             }
         }
