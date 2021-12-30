@@ -29,8 +29,8 @@ public class UseSysteme {
         planete soleil = new planete(Color.orange);
 
         planete mercure = new planete(0.6, 0.5, 0.005, 4.147 * rotationTerre, 191,179,164); //88 jours
-        planete venus = new planete(0.65, 0.5, 0.01, 1.629 * rotationTerre, 221,216,212);// 224 jours
-        planete terre = new planete(0.70, 0.5, 0.02, rotationTerre, Color.blue); // 365 jours
+        planete venus = new planete(0.65, 0.5, 0.015, 1.629 * rotationTerre, 221,216,212);// 224 jours
+        planete terre = new planete(0.70, 0.5, 0.015, rotationTerre, Color.blue); // 365 jours
         planete mars = new planete(0.75, 0.5, 0.007, 0.531 * rotationTerre, 178, 46, 32); // 687 jours
         planete jupiter = new planete(0.8, 0.5, 0.03, 0.084 * rotationTerre, 235, 160, 116); // 4 332 jours
         planete saturne = new planete(0.86, 0.5, 0.028, 0.033 * rotationTerre, 214, 182, 117); // 10 759 jours
