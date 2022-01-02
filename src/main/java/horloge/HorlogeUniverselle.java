@@ -5,7 +5,7 @@ import java.util.Date;
 public class HorlogeUniverselle implements Runnable{
 
     //Attributs
-    private final int joursParSeconde;
+    private  int joursParSeconde;
     private Date dateSimu;
     private Date dateReel;
 
@@ -24,6 +24,12 @@ public class HorlogeUniverselle implements Runnable{
 
 
     //Méthodes
+
+    public void setJoursParSeconde(int joursParSeconde) {
+        if(joursParSeconde >=0) {
+            this.joursParSeconde = joursParSeconde;
+        }
+    }
 
     public void stop() {
         continu = false;
@@ -48,6 +54,28 @@ public class HorlogeUniverselle implements Runnable{
 
     public Date getDateReel() {
         return dateReel;
+    }
+
+    //incrémenter l'échelle de l'horloge
+    public void incJPS(){
+        joursParSeconde+=10;
+        System.out.println(joursParSeconde);
+    }
+
+    //décrémenter l'échelle de l'horloge
+    public void decJPS(){
+        if(joursParSeconde+10>0){
+            joursParSeconde-=10;
+        }
+    }
+
+    //mettre en pause l'horloge
+    public void playPause(int JPS){
+        if (joursParSeconde!=0) {
+            setJoursParSeconde(0);
+        } else {
+            setJoursParSeconde(JPS);
+        }
     }
 
     //Mise à jour de la date simulée de l'horloge universelle

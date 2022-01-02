@@ -19,22 +19,27 @@ public class Fenetre implements DrawListener {
     private int hauteur;
 
     boolean continu = true;
-    Draw d = new Draw("Systeme Solaire");
+    private Draw d = new Draw("Systeme Solaire");
+    private Label labelJPS;
 
-    List<planete> planetes;
+    private List<planete> planetes;
+
+    private static HorlogeUniverselle horloge;
+    private int JPS;
 
     //Constructeur
 
-    public Fenetre(int x, int y) {
+    public Fenetre(int x, int y, HorlogeUniverselle h) {
         this.hauteur = y;
         this.longueur = x;
         d.setCanvasSize(longueur,hauteur);
         d.addListener(this);
         d.enableDoubleBuffering();
+        Fenetre.horloge = h;
     }
 
-    public Fenetre() {
-        this(800,800);
+    public Fenetre(HorlogeUniverselle h) {
+        this(800,800, h);
     }
 
     public boolean isContinu() { return continu; }
@@ -44,7 +49,7 @@ public class Fenetre implements DrawListener {
     }
 
     //Méthode
-    public void affiche(List<planete> planetes, HorlogeUniverselle horloge){
+    public void affiche(List<planete> planetes){
         d.clear(Color.black);
 
         for ( planete p : planetes ) {
@@ -54,6 +59,7 @@ public class Fenetre implements DrawListener {
             d.show();
             p.deplacerPlanete(horloge);
         }
+
         //Temps d'attendre pour permettre un affichage plus visuel
         d.pause(10);
     }
@@ -61,14 +67,32 @@ public class Fenetre implements DrawListener {
 
     @Override
     public void keyTyped(char c) {
-        if(c == 's'){
-            for ( planete p : planetes ) {
-                p.dezoom();
-            }
-        }else if(c == 'z'){
-            for ( planete p : planetes ) {
-                p.zoom();
-            }
+        if (horloge.getJoursParSeconde()!=0)
+            JPS = horloge.getJoursParSeconde();
+        switch (c){
+            case 's' :
+                for ( planete p : planetes ) {
+                    p.dezoom();
+                }
+                break;
+            case 'z' :
+                for (planete p : planetes) {
+                    p.zoom();
+                }
+                break;
+
+            case 'p':
+                horloge.playPause(JPS);
+                break;
+            case '-' :
+                horloge.decJPS();
+                break;
+            case '+' :
+                horloge.incJPS();
+                break;
+
+            default:
+                break;
         }
     }
 

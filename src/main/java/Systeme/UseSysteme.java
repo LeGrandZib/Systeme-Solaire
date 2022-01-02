@@ -11,15 +11,13 @@ import java.util.List;
 public class UseSysteme {
     public static void main(String[] args) {
 
-        //Création fenetre
-
-        Fenetre f = new Fenetre();
-
-
-        HorlogeUniverselle horloge = new HorlogeUniverselle(10);
+        //Créarion de l'horloge
+        HorlogeUniverselle horloge = new HorlogeUniverselle(365);
         Thread threadHorloge = new Thread(horloge);
 
+        //Création fenetre
 
+        Fenetre f = new Fenetre(horloge);
 
         //Constante rotationTerre (toutes les autres planètes se déplacent autour du soleil en fonction de la période de révolution de la Terre)
         final double rotationTerre = 0.0015;
@@ -45,10 +43,11 @@ public class UseSysteme {
 
         f.setPlanetes(planetes);
 
+        //Démarrage de l'horloge
         threadHorloge.start();
 
         while(f.isContinu()){
-            f.affiche(planetes, horloge);
+            f.affiche(planetes);
         }
     }
 }
