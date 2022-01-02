@@ -59,7 +59,6 @@ public class HorlogeUniverselle implements Runnable{
     //incrémenter l'échelle de l'horloge
     public void incJPS(){
         joursParSeconde+=10;
-        System.out.println(joursParSeconde);
     }
 
     //décrémenter l'échelle de l'horloge

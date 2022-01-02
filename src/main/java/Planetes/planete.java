@@ -116,17 +116,4 @@ public class planete {
         this.yCercle += y;
     }
 
-    public void zoom(){
-        this.rayon *= 1.01;
-        this.xCercle += 0.01;
-        this.yCercle += 0.01;
-    }
-
-    public void dezoom(){
-        this.rayon *= 0.99;
-        this.xCercle -= 0.01;
-        this.yCercle -= 0.01;
-    }
-
-
 }

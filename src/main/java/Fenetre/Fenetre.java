@@ -70,17 +70,6 @@ public class Fenetre implements DrawListener {
         if (horloge.getJoursParSeconde()!=0)
             JPS = horloge.getJoursParSeconde();
         switch (c){
-            case 's' :
-                for ( planete p : planetes ) {
-                    p.dezoom();
-                }
-                break;
-            case 'z' :
-                for (planete p : planetes) {
-                    p.zoom();
-                }
-                break;
-
             case 'p':
                 horloge.playPause(JPS);
                 break;
@@ -101,16 +90,11 @@ public class Fenetre implements DrawListener {
 
     @Override
     public void mousePressed(double x, double y) {
-        System.out.println("x : " + x);
-        System.out.println("y : " + y + "\n");
         this.mouseX = x;
         this.mouseY = y;
     }
     @Override
     public void mouseDragged(double x, double y) {
-
-        System.out.println("x : " + x);
-        System.out.println("y : " + y + "\n");
 
         for ( planete p : planetes ) {
             p.deplacerPlanete(-(this.mouseX - x), -(this.mouseY - y));
